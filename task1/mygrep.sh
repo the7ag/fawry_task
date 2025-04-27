@@ -13,8 +13,11 @@ if [ ! -f "$filePath" ]; then
     exit 1
 fi
 
+patternLower=$(echo "$searchingPattern" | tr '[:upper:]' '[:lower:]')
+
 while read line; do
-    if [[ "$line" == *"$searchingPattern"* ]]; then
+    lineLower=$(echo "$line" | tr '[:upper:]' '[:lower:]')
+    if [[ "$lineLower" == *"$patternLower"* ]]; then
         echo "$line"
     fi
 done < "$filePath"
