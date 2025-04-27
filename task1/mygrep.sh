@@ -9,8 +9,13 @@ searchingPattern="$1"
 filePath="$2"
 
 if [ ! -f "$filePath" ]; then
-    echo "Erro: file '$filePath' does not exist"
+    echo "Error: file '$filePath' does not exist"
     exit 1
 fi
 
-echo "Searching for '$searchingPattern' in '$filePath'"
+while read line; do
+    if [[ "$line" == *"$searchingPattern"* ]]; then
+        echo "$line"
+    fi
+done < "$filePath"
+exit 0
