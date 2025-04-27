@@ -2,6 +2,29 @@
 
 showLineNumber=false
 invertMatch=false
+searchingPattern=""
+filePath=""
+
+usage() {
+    echo "Usage: $0 [-n] [-v] <PATTERN> <FILE>"
+    echo "Search for PATTERN in FILE."
+    echo ""
+    echo "options:"
+    echo "  -n: Show line numbers"
+    echo "  -v: Invert match"
+    echo "--help: Show this help message and exit"
+    echo ""
+    echo "examples:"
+    echo "  $0 hello file.txt"
+    echo "  $0 -n hello file.txt"
+    echo "  $0 -vn hello file.txt"
+    echo "  $0 -n -v hello file.txt"
+    exit 1
+}
+
+if [ "$1" == "--help" ]; then
+    usage
+fi
 
 while [[ "$1" == -* ]]; do 
   if [[ "$1" == *"n"* ]]; then 
