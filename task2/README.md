@@ -194,3 +194,29 @@ Here's how to confirm and fix each potential cause:
 10. **Basic Network Connectivity:**
     * **Confirm:** Use `ping <Server_IP>`, `ip addr show` (check client IP/subnet), `ip route show` (check default gateway). Do similar checks on the server.
     * **Fix:** Correct IP configuration (`sudo nano /etc/network/interfaces` or NetworkManager tools), fix routing (`sudo ip route add/del`), ensure interfaces are up (`sudo ip link set eth0 up`).
+
+---
+
+
+### 5. Bonus
+
+
+**A. Configure `/etc/hosts` entry for testing:**
+
+This bypasses DNS entirely for your local machine, allowing you to test connectivity (Step 2) even if DNS is broken.
+
+1.  **Edit the hosts file:**
+    ```bash
+    sudo nano /etc/hosts
+    ```
+2.  **Add a line:** (Assuming you know the correct IP is `192.168.1.14`)
+    ```
+    192.168.1.14    internal.example.com
+    ```
+    *[[Screenshot 8]]
+3.  **Save and Exit** (Ctrl+O, Enter, Ctrl+X in nano).
+4.  **Test:** Now try `ping internal.example.com` or `curl http://internal.example.com`. It should use the IP from the hosts file.
+    *[[Screenshot 9]]
+
+
+---
