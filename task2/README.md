@@ -36,3 +36,45 @@ nslookup internal.example.com 8.8.8.8
 
 
 **Conclusion from this step:** Most likely, the internal DNS server listed in `/etc/resolv.conf` is either unreachable or doesn't have the correct record for `internal.example.com`.
+
+
+### 2. Verify DNS Resolution
+172.17.96.1
+Let's assume that we get an IP address from DNS (you got it from the documentation,it's `192.168.1.14`). We now need to check two things if the web service on that IP is actually running and if it's accessible.
+
+**A. Check connectivity to the web ports (80 , 443):**
+
+```bash
+# Try connecting to port 80
+telnet 192.168.1.14 80
+
+# Try connecting to port 443 
+telnet 192.168.1.14 443
+```
+
+* [[Screenshot 4]]
+* **Success:** It got a success because the server is up and listnning on that port and that ip
+
+**B. Use `curl` to check if the web service responds:**
+
+```bash
+# Check HTTP
+curl -v http://192.168.1.14
+
+# Check HTTPS (add -k if using self-signed certs)
+curl -v -k https://192.168.1.14
+```
+
+* [[Screenshot 5]]
+* [[Screenshot 6]]
+
+**C. Check if the service is listening (Run this ON THE SERVER `192.168.1.14`):**
+
+```bash
+sudo ss -tlpn | grep ':80\|:443'
+```
+
+* [[Screenshot 7]]
+* **Failure:** There's no output because the server isn't hosted on the WSL machine it's running on my local windows machine so that's why there's no output
+
+**Conclusion from this step:** These checks tell you if the web server itself is running and reachable or not using the above commands once we know the IP for the server
