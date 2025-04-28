@@ -250,7 +250,7 @@ This bypasses DNS entirely for your local machine, allowing you to test connecti
         #ReadEtcHosts=yes
         #ResolveUnicastSingleLabel=no
         ```
-        * [[Screenshot 10]]
+        * ![screenshot10](https://github.com/user-attachments/assets/12e8af95-fda7-4f7d-9441-7e636eea0f7c)
     3.  Restart the service:
         ```bash
         sudo systemctl restart systemd-resolved
