@@ -213,10 +213,12 @@ This bypasses DNS entirely for your local machine, allowing you to test connecti
     ```
     192.168.1.14    internal.example.com
     ```
-    *[[Screenshot 8]]
+    * ![screenshot8](https://github.com/user-attachments/assets/1915707e-623d-4b3b-b10a-185a210b43bb)
+    
 3.  **Save and Exit** (Ctrl+O, Enter, Ctrl+X in nano).
 4.  **Test:** Now try `ping internal.example.com` or `curl http://internal.example.com`. It should use the IP from the hosts file.
-    *[[Screenshot 9]]
+    * ![screenshot9](https://github.com/user-attachments/assets/e066d8cc-4b09-4d66-b909-10ff198541eb)
+
 
 
 ---
