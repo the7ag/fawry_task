@@ -222,3 +222,37 @@ This bypasses DNS entirely for your local machine, allowing you to test connecti
 
 
 ---
+
+
+**B. Persist DNS Server Settings:**
+
+`/etc/resolv.conf` is often automatically generated. To make permanent changes:
+
+* **using `systemd-resolved`:**
+    1.  Edit the configuration file:
+        ```bash
+        sudo nano /etc/systemd/resolved.conf
+        ```
+    2.  In the `[Resolve]` section, uncomment and set the `DNS=` line with your internal DNS server IPs (space-separated).
+        ```ini
+        [Resolve]
+        DNS=10.255.255.254
+        #FallbackDNS=
+        #Domains=
+        #DNSSEC=no
+        #DNSOverTLS=no
+        #MulticastDNS=no
+        #LLMNR=no
+        #Cache=no-negative
+        #CacheFromLocalhost=no
+        #DNSStubListener=yes
+        #DNSStubListenerExtra=
+        #ReadEtcHosts=yes
+        #ResolveUnicastSingleLabel=no
+        ```
+        * [[Screenshot 10]]
+    3.  Restart the service:
+        ```bash
+        sudo systemctl restart systemd-resolved
+        ```
+    4.  Verify: Check `cat /etc/resolv.conf`.
