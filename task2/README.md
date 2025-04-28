@@ -39,10 +39,9 @@ nslookup internal.example.com 8.8.8.8
 
 
 ### 2. Verify DNS Resolution
-172.17.96.1
 Let's assume that we get an IP address from DNS (you got it from the documentation,it's `192.168.1.14`). We now need to check two things if the web service on that IP is actually running and if it's accessible.
 
-**A. Check connectivity to the web ports (80 , 443):**
+**A. Check connectivity to the web ports (80, 443):**
 
 ```bash
 # Try connecting to port 80
@@ -52,8 +51,9 @@ telnet 192.168.1.14 80
 telnet 192.168.1.14 443
 ```
 
-* [[Screenshot 4]]
-* **Success:** It got a success because the server is up and listnning on that port and that ip
+* ![screenshot4](https://github.com/user-attachments/assets/86224a5a-d94d-41e9-be5d-52c5c44d1f62)
+
+* **Success:** It was a success because the server is up and listening on that port and that IP
 
 **B. Use `curl` to check if the web service responds:**
 
@@ -65,8 +65,9 @@ curl -v http://192.168.1.14
 curl -v -k https://192.168.1.14
 ```
 
-* [[Screenshot 5]]
-* [[Screenshot 6]]
+* ![screenshot5](https://github.com/user-attachments/assets/bbb8df08-4cc5-4435-a125-52f657478472)
+* ![screenshot6](https://github.com/user-attachments/assets/0e7ab57a-0089-470c-a476-0e4ade6e7a46)
+
 
 **C. Check if the service is listening (Run this ON THE SERVER `192.168.1.14`):**
 
@@ -74,7 +75,7 @@ curl -v -k https://192.168.1.14
 sudo ss -tlpn | grep ':80\|:443'
 ```
 
-* [[Screenshot 7]]
-* **Failure:** There's no output because the server isn't hosted on the WSL machine it's running on my local windows machine so that's why there's no output
+* ![screenshot7](https://github.com/user-attachments/assets/aa30413c-7819-4cdd-b67d-18d55c545f2a)
+* **Failure:** There's no output because no service inside the WSL Linux environment is listening on ports 80 or 443. The web server is running on the Windows side (not inside WSL), so ss -tlpn inside WSL shows nothing for ports 80/443
 
-**Conclusion from this step:** These checks tell you if the web server itself is running and reachable or not using the above commands once we know the IP for the server
+**Conclusion from this step:** These checks tell you if the web server itself is running and reachable or nott using the above commands once we know the IP for the server
